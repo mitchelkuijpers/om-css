@@ -71,7 +71,7 @@
     :else opt-val))
 
 (defn- format-attrs [attrs]
-  "Leaves :className unchanged, formats :class accordingly. Converts :ref to string."
+  "Leaves :className unchanged, formats :class accordingly."
   (let [map #?(:clj  clojure.core/map
                :cljs cljs.core/map)]
     (->> attrs
@@ -83,9 +83,6 @@
              (let [component-info (:omcss$info attrs)
                    classes-seen (:classes component-info)]
                (utils/format-dom-class-names v component-info classes-seen))
-
-             :ref
-             (str v)
 
              (format-opt-val v))]))
       (reduce (fn [m [k v]]
